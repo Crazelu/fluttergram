@@ -8,3 +8,4 @@ export 'custom_text_field.dart';
 export 'custom_button.dart';
 export 'cta_text.dart';
 export 'instagram_text.dart';
+export 'post_card.dart';

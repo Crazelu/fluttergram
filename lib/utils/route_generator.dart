@@ -13,6 +13,8 @@ class RouteGenerator {
         return _getPageRoute(SignUpView(), settings);
       case LoginViewRoute:
         return _getPageRoute(LoginView(), settings);
+      case FeedViewRoute:
+        return _getPageRoute(FeedView(), settings);
 
       default:
         return _getPageRoute(_errorPage());
