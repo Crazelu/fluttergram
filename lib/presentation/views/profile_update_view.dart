@@ -43,11 +43,13 @@ class _ProfileUpdateViewState extends State<ProfileUpdateView> {
             const CustomSpacer(flex: 10),
             CustomTextField(
               readOnly: true,
+              label: 'Username',
               hint: 'Username',
               controller: nameController,
             ),
             const CustomSpacer(flex: 3),
             CustomTextField(
+              label: 'Bio',
               hint: 'Bio',
               maxLines: 4,
               controller: bioController,

@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final String? label;
   final String? hint;
+  final Widget? prefix;
   final Widget? suffix;
   final Function(String)? validator;
   final TextInputType? keyboardType;
@@ -14,7 +15,7 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final int? maxLines;
   final bool readOnly;
-  final VoidCallback? onTap;
+  final bool transparent;
 
   const CustomTextField({
     Key? key,
@@ -22,20 +23,20 @@ class CustomTextField extends StatelessWidget {
     this.focusNode,
     this.label,
     this.hint,
+    this.prefix,
     this.suffix,
     this.validator,
     this.keyboardType,
     this.textInputAction = TextInputAction.next,
     this.readOnly = false,
+    this.transparent = false,
     this.maxLines,
-    this.onTap,
     this.textCapitalization = TextCapitalization.none,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: onTap,
       readOnly: readOnly,
       maxLines: maxLines,
       textCapitalization: textCapitalization,
@@ -54,35 +55,42 @@ class CustomTextField extends StatelessWidget {
         }
       },
       decoration: InputDecoration(
+        prefixIcon: prefix,
         filled: true,
-        fillColor: const Color(0xfff5f5f5f5),
+        fillColor: transparent ? Colors.transparent : const Color(0xfff5f5f5f5),
         alignLabelWithHint: true,
         labelText: label,
         hintText: hint,
         suffixIcon: suffix,
         labelStyle: TextStyle(
-          fontSize: 16.sp,
+          fontSize: 14.sp,
           color: Theme.of(context).primaryColorDark.withOpacity(.4),
         ),
         hintStyle: TextStyle(
-          fontSize: 16.sp,
+          fontSize: 14.sp,
           color: Theme.of(context).primaryColorDark.withOpacity(.4),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).highlightColor,
+            color: transparent
+                ? Colors.transparent
+                : Theme.of(context).highlightColor,
           ),
           borderRadius: BorderRadius.circular(5.w),
         ),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).highlightColor,
+            color: transparent
+                ? Colors.transparent
+                : Theme.of(context).highlightColor,
           ),
           borderRadius: BorderRadius.circular(5.w),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).highlightColor,
+            color: transparent
+                ? Colors.transparent
+                : Theme.of(context).highlightColor,
           ),
           borderRadius: BorderRadius.circular(5.w),
         ),

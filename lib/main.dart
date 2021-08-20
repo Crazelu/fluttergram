@@ -23,7 +23,7 @@ class App extends StatelessWidget {
         theme: lightTheme,
         navigatorKey: locator<NavigationHandler>().navigatorKey,
         onGenerateRoute: RouteGenerator.onGenerateRoute,
-        initialRoute: ProfileUpdateViewRoute,
+        initialRoute: AddPostViewRoute,
         builder: (context, widget) => Navigator(
           onGenerateRoute: (settings) => CupertinoPageRoute(
             builder: (context) => DialogManager(

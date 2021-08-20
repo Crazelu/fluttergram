@@ -10,5 +10,6 @@ const FeedViewRoute = '/feed';
 const SinglePostViewRoute = '/view-post';
 const UserMediaViewRoute = '/user-media';
 const ProfileUpdateViewRoute = '/update-profile';
+const AddPostViewRoute = '/add-post';
 
 final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);
