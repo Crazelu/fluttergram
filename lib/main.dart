@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'presentation/shared/shared.dart';
 import 'presentation/themes/light_theme.dart';
 import 'utils/utils.dart';
 import 'handlers/navigation_handler.dart';
 
 void main() {
+  setupLocator();
   runApp(App());
 }
 
