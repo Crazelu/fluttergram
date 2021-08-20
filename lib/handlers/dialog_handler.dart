@@ -5,10 +5,17 @@ abstract class DialogHandler {
   void setIsDialogVisible(bool isDialogVisible);
   void dismissDialog();
 
-  /// Registers a callback function to show the dialog
+  /// Registers a callback to show the dialog
   void registerDialogListener(Function(DialogRequest) showDialogListener);
+
+  /// Registers a callback dismiss current dialog
   void registerDismissDialogListener(Function dismissCurrentDialog);
+
+  ///Completes the future reference of the Completer
+  ///for this dialog.
   void dialogComplete(bool response);
+
+  ///Shows a dialog on the screen
   Future<bool> showDialog({
     DialogType type = DialogType.error,
     required String message,

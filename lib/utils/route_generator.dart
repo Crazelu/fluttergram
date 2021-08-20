@@ -19,14 +19,13 @@ class RouteGenerator {
   //Wraps widget with a CupertinoPageRoute and adds route settings
   static CupertinoPageRoute _getPageRoute(
     Widget child, [
-    String? routeName,
-    dynamic args,
+    RouteSettings settings = const RouteSettings(),
   ]) =>
       CupertinoPageRoute(
         builder: (context) => child,
         settings: RouteSettings(
-          name: routeName,
-          arguments: args,
+          name: settings.name,
+          arguments: settings.arguments,
         ),
       );
 
