@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'shared.dart';
 
-final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);
-
 class PostCard extends StatelessWidget {
   final bool inSingleView;
 

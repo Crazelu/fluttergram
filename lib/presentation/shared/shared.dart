@@ -10,3 +10,5 @@ export 'cta_text.dart';
 export 'instagram_text.dart';
 export 'post_card.dart';
 export 'custom_app_bar.dart';
+export 'following_header.dart';
+export 'media_tab_view.dart';
