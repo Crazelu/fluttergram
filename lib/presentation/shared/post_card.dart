@@ -4,7 +4,12 @@ import 'shared.dart';
 final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);
 
 class PostCard extends StatelessWidget {
-  const PostCard({Key? key}) : super(key: key);
+  final bool inSingleView;
+
+  const PostCard({
+    Key? key,
+    this.inSingleView = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +72,7 @@ class PostCard extends StatelessWidget {
           const CustomSpacer(),
           //posted image
           Container(
-            height: 150.h,
+            height: inSingleView ? 200.h : 150.h,
             width: context.screenWidth(),
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -85,11 +90,24 @@ class PostCard extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {},
-                      child: Icon(Icons.favorite_border),
+                      child: Icon(
+                        Icons.favorite_border,
+                        color:
+                            Theme.of(context).primaryColorDark.withOpacity(.6),
+                      ),
+                    ),
+                    const CustomSpacer(horizontal: true),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.chat_bubble_outline,
+                        color:
+                            Theme.of(context).primaryColorDark.withOpacity(.6),
+                      ),
                     ),
                   ],
                 ),
-                const CustomSpacer(flex: 1),
+                const CustomSpacer(flex: 1.5),
                 Text("2 likes")
               ],
             ),

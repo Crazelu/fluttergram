@@ -15,6 +15,8 @@ class RouteGenerator {
         return _getPageRoute(LoginView(), settings);
       case FeedViewRoute:
         return _getPageRoute(FeedView(), settings);
+      case SinglePostViewRoute:
+        return _getPageRoute(SinglePostView(), settings);
 
       default:
         return _getPageRoute(_errorPage());
