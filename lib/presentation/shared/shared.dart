@@ -12,3 +12,4 @@ export 'post_card.dart';
 export 'custom_app_bar.dart';
 export 'following_header.dart';
 export 'media_tab_view.dart';
+export 'comment_card.dart';

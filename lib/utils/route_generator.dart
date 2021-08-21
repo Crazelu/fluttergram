@@ -23,6 +23,8 @@ class RouteGenerator {
         return _getPageRoute(ProfileUpdateView(), settings);
       case AddPostViewRoute:
         return _getPageRoute(AddPostView(), settings);
+      case CommentsViewRoute:
+        return _getPageRoute(CommentsView(), settings);
 
       default:
         return _getPageRoute(_errorPage());
