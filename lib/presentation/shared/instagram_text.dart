@@ -12,6 +12,7 @@ class InstagramText extends StatelessWidget {
         'Instagram',
         textAlign: TextAlign.center,
         style: TextStyle(
+          fontFamily: "Billabong",
           color: Theme.of(context).primaryColorDark,
         ),
       ),
