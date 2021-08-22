@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttergram/models/post.dart';
-import 'package:fluttergram/models/user.dart';
 import 'package:fluttergram/presentation/view-models/base_view_model.dart';
 import 'package:fluttergram/utils/utils.dart';
 
