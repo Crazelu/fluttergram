@@ -17,6 +17,26 @@ class _UserMediaViewState extends State<UserMediaView> {
       appBar: CustomAppBar(
         automaticallyImplyLeading: false,
         text: homeVM.user.userName,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              homeVM.signOut();
+            },
+            child: Container(
+              padding: EdgeInsets.only(right: 10.w),
+              alignment: Alignment.center,
+              child: Text(
+                "Sign Out",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       builder: (size) {
         return SizedBox(

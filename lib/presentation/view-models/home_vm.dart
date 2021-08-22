@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttergram/models/post.dart';
 import 'package:fluttergram/models/user.dart';
 import 'package:fluttergram/presentation/view-models/base_view_model.dart';
@@ -82,6 +82,12 @@ class HomeVM extends BaseViewModel {
       toggleLoading(false);
       AppLogger.logger.d(e);
     }
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    await storageService.delete();
+    navigationHandler.pushReplacementNamed(LoginViewRoute);
   }
 
   @override

@@ -54,7 +54,7 @@ class DialogCardDemo extends StatelessWidget {
                         horizontal: true,
                       ),
                       Text(
-                        "Dialog title",
+                        "Oops",
                         style: TextStyle(
                           fontSize: 16.sp,
                           color: Theme.of(context).primaryColorDark,

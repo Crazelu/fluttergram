@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return ResponsiveWidget(
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 22.w,
+        iconSize: 24.w,
         selectedFontSize: 0,
         unselectedFontSize: 0,
         unselectedItemColor: Theme.of(context).primaryColorDark.withOpacity(.5),

@@ -28,6 +28,9 @@ class Avatar extends StatelessWidget {
           image: NetworkImage(url ?? homeVM.user.profileImage),
         ),
       ),
+      child: (url == null && homeVM.user.profileImage.isEmpty)
+          ? Icon(Icons.camera_alt)
+          : null,
     );
   }
 }
