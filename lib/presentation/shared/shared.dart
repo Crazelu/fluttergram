@@ -13,4 +13,6 @@ export 'custom_app_bar.dart';
 export 'following_header.dart';
 export 'media_tab_view.dart';
 export 'comment_card.dart';
+export 'avatar.dart';
+export 'user_card.dart';
 export 'package:provider/provider.dart';

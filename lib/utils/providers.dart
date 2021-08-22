@@ -8,5 +8,12 @@ class AppProvider {
   static final providers = <SingleChildWidget>[
     ChangeNotifierProvider(create: (_) => SignUpVM()),
     ChangeNotifierProvider(create: (_) => LoginVM()),
+    ChangeNotifierProvider(create: (_) => CreatePostVM()),
+    ChangeNotifierProvider(create: (_) => FeedVM()),
+    ChangeNotifierProvider(create: (_) => HomeVM()),
+    ChangeNotifierProvider(create: (_) => ProfileVM()),
+    ChangeNotifierProvider(create: (_) => SearchVM()),
+    ChangeNotifierProvider(create: (_) => GuestProfileVM()),
+    ChangeNotifierProvider(create: (_) => CommentVM()),
   ];
 }

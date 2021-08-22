@@ -25,8 +25,10 @@ class SignUpVM extends BaseViewModel {
         final ref = FirebaseFirestore.instance
             .collection('users')
             .withConverter<UserModel>(
-              fromFirestore: (snapshot, _) =>
-                  UserModel.fromMap(snapshot.data()!),
+              fromFirestore: (snapshot, _) => UserModel.fromMap(
+                snapshot.data()!,
+                snapshot.id,
+              ),
               toFirestore: (user, _) => user.toMap(),
             );
 
@@ -34,7 +36,7 @@ class SignUpVM extends BaseViewModel {
       }
 
       toggleLoading(false);
-      navigationHandler.pushNamed(FeedViewRoute);
+      navigationHandler.pushNamed(HomeViewRoute);
     } on FirebaseAuthException catch (e) {
       AppLogger.logger.d(e.stackTrace);
       toggleLoading(false);

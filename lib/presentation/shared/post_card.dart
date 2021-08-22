@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttergram/models/post.dart';
+import 'package:fluttergram/presentation/view-models/feed_vm.dart';
 import 'shared.dart';
 
 class PostCard extends StatelessWidget {
+  final Post post;
   final bool inSingleView;
 
   const PostCard({
     Key? key,
+    required this.post,
     this.inSingleView = false,
   }) : super(key: key);
 
@@ -20,9 +24,17 @@ class PostCard extends StatelessWidget {
             padding: kHorizontalPadding,
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 17.w,
-                  backgroundColor: Colors.pink,
+                GestureDetector(
+                  onTap: () {
+                    locator<NavigationHandler>().pushNamed(
+                      GuestProfileViewRoute,
+                      arg: post.userId,
+                    );
+                  },
+                  child: Avatar(
+                    url: post.userImageUrl,
+                    size: 32.w,
+                  ),
                 ),
                 const CustomSpacer(horizontal: true),
                 Column(
@@ -31,7 +43,7 @@ class PostCard extends StatelessWidget {
                     SizedBox(
                       width: context.screenWidth(.45),
                       child: Text(
-                        'Johndoe',
+                        post.userName,
                         maxLines: 2,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
@@ -44,7 +56,7 @@ class PostCard extends StatelessWidget {
                     SizedBox(
                       width: context.screenWidth(.45),
                       child: Text(
-                        'New York City',
+                        post.location,
                         maxLines: 2,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
@@ -73,7 +85,11 @@ class PostCard extends StatelessWidget {
             height: inSingleView ? 200.h : 150.h,
             width: context.screenWidth(),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.grey[200],
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(post.imageUrl),
+              ),
             ),
           ),
           const CustomSpacer(),
@@ -87,18 +103,32 @@ class PostCard extends StatelessWidget {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<FeedVM>().likePost(post);
+                      },
                       child: Icon(
-                        Icons.favorite_border,
-                        color:
-                            Theme.of(context).primaryColorDark.withOpacity(.6),
+                        context.watch<FeedVM>().isLiked(post)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: context.watch<FeedVM>().isLiked(post)
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .primaryColorDark
+                                .withOpacity(.6),
+                        size: 20.w,
                       ),
                     ),
                     const CustomSpacer(horizontal: true),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        locator<NavigationHandler>().pushNamed(
+                          CommentsViewRoute,
+                          arg: post.postId,
+                        );
+                      },
                       child: Icon(
                         Icons.chat_bubble_outline,
+                        size: 20.w,
                         color:
                             Theme.of(context).primaryColorDark.withOpacity(.6),
                       ),
@@ -106,7 +136,7 @@ class PostCard extends StatelessWidget {
                   ],
                 ),
                 const CustomSpacer(flex: 1.5),
-                Text("2 likes")
+                Text("${post.likers.length} likes")
               ],
             ),
           ),
@@ -127,14 +157,14 @@ class PostCard extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: "JohnDoe ",
+                      text: '${post.userName} ',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColorDark,
                       ),
                     ),
-                    TextSpan(text: "Some caption"),
+                    TextSpan(text: post.caption),
                   ],
                 ),
               ),

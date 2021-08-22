@@ -1,11 +1,22 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 abstract class ImagePickerService {
-  Future<void> pickImage(bool camera);
+  Future<File?> pickImage(bool camera);
 }
 
 class ImagePickerServiceImpl implements ImagePickerService {
+  late ImagePicker imagePicker;
+
+  ImagePickerServiceImpl({ImagePicker? imagePicker}) {
+    this.imagePicker = imagePicker ?? ImagePicker();
+  }
+
   @override
-  Future<void> pickImage(bool camera) async {
-    // TODO: implement pickImage
-    throw UnimplementedError();
+  Future<File?> pickImage(bool camera) async {
+    var pickedImage = await imagePicker.pickImage(
+      source: camera ? ImageSource.camera : ImageSource.gallery,
+    );
+    if (pickedImage != null) return File(pickedImage.path);
   }
 }

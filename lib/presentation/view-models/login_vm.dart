@@ -22,7 +22,7 @@ class LoginVM extends BaseViewModel {
 
       toggleLoading(false);
 
-      navigationHandler.pushNamed(FeedViewRoute);
+      navigationHandler.pushNamed(HomeViewRoute);
     } on FirebaseAuthException catch (e) {
       AppLogger.logger.d(e);
       toggleLoading(false);

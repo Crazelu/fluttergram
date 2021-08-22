@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttergram/models/post.dart';
 import '../presentation/views/views.dart';
 import '../utils/utils.dart';
 
@@ -13,24 +14,33 @@ class RouteGenerator {
         return _getPageRoute(SignUpView(), settings);
       case LoginViewRoute:
         return _getPageRoute(LoginView(), settings);
-      case FeedViewRoute:
-        return _getPageRoute(FeedView(), settings);
       case SinglePostViewRoute:
-        return _getPageRoute(SinglePostView(), settings);
-      case UserMediaViewRoute:
-        return _getPageRoute(UserMediaView(), settings);
+        final post = settings.arguments;
+        if (post != null && post is Post) {
+          return _getPageRoute(SinglePostView(post: post), settings);
+        }
+        return _getPageRoute(_errorPage(message: "Post missing"));
+
       case ProfileUpdateViewRoute:
         return _getPageRoute(ProfileUpdateView(), settings);
-      case AddPostViewRoute:
-        return _getPageRoute(AddPostView(), settings);
       case CommentsViewRoute:
-        return _getPageRoute(CommentsView(), settings);
+        final postId = settings.arguments;
+        if (postId != null && postId is String) {
+          return _getPageRoute(CommentsView(postId: postId), settings);
+        }
+        return _getPageRoute(_errorPage(message: "postId missing"));
+
       case AuthBridgeViewRoute:
         return _getPageRoute(AuthBridgeView(), settings);
       case HomeViewRoute:
         return _getPageRoute(HomeView(), settings);
-      case SearchViewRoute:
-        return _getPageRoute(SearchView(), settings);
+
+      case GuestProfileViewRoute:
+        final userId = settings.arguments;
+        if (userId != null && userId is String) {
+          return _getPageRoute(GuestProfileView(userId: userId), settings);
+        }
+        return _getPageRoute(_errorPage(message: "UserId missing"));
 
       default:
         return _getPageRoute(_errorPage());

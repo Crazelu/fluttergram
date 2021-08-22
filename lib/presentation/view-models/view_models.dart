@@ -1,2 +1,9 @@
 export 'sign_up_vm.dart';
 export 'login_vm.dart';
+export 'create_post_vm.dart';
+export 'feed_vm.dart';
+export 'home_vm.dart';
+export 'profile_vm.dart';
+export 'search_vm.dart';
+export 'guest_profile_vm.dart';
+export 'comment_vm.dart';

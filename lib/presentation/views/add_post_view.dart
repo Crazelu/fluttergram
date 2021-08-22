@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttergram/presentation/shared/shared.dart';
+import 'package:fluttergram/presentation/view-models/view_models.dart';
 
 class AddPostView extends StatefulWidget {
   const AddPostView({Key? key}) : super(key: key);
@@ -9,16 +10,52 @@ class AddPostView extends StatefulWidget {
 }
 
 class _AddPostViewState extends State<AddPostView> {
-  final locationController = TextEditingController();
+  final locationController = TextEditingController(text: 'Earth');
   final captionController = TextEditingController();
+
+  Future<void> showCameraDialog() async {
+    await showDialog(
+      builder: (context) {
+        final createPostVM = context.read<CreatePostVM>();
+        return SimpleDialog(
+          children: [
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await createPostVM.pickImage(true);
+              },
+              child: Text("Take picture"),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await createPostVM.pickImage();
+              },
+              child: Text("Choose from gallery"),
+            ),
+          ],
+        );
+      },
+      context: context,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final createPostVM = context.read<CreatePostVM>();
+    final rxCreatePostVM = context.watch<CreatePostVM>();
     return ResponsiveWidget(
       appBar: CustomAppBar(
+        automaticallyImplyLeading: false,
         text: "New Post",
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              createPostVM.createPost(
+                caption: captionController.text,
+                location: locationController.text,
+              );
+            },
             child: Container(
               padding: EdgeInsets.only(right: 10.w),
               alignment: Alignment.center,
@@ -46,9 +83,7 @@ class _AddPostViewState extends State<AddPostView> {
                 Column(
                   children: [
                     const CustomSpacer(flex: 2.5),
-                    CircleAvatar(
-                      radius: 15.w,
-                    ),
+                    Avatar(size: 32.w),
                   ],
                 ),
                 const CustomSpacer(horizontal: true),
@@ -65,11 +100,25 @@ class _AddPostViewState extends State<AddPostView> {
                 Column(
                   children: [
                     const CustomSpacer(),
-                    Container(
-                      height: 50.h,
-                      width: 60.w,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
+                    GestureDetector(
+                      onTap: () async {
+                        await showCameraDialog();
+                      },
+                      child: Container(
+                        height: 50.h,
+                        width: 60.w,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          image: rxCreatePostVM.pickedFile != null
+                              ? DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: FileImage(rxCreatePostVM.pickedFile!),
+                                )
+                              : null,
+                        ),
+                        child: rxCreatePostVM.pickedFile == null
+                            ? Icon(Icons.camera_alt)
+                            : null,
                       ),
                     ),
                   ],
@@ -82,6 +131,15 @@ class _AddPostViewState extends State<AddPostView> {
               hint: 'Add location',
               controller: locationController,
             ),
+            const CustomSpacer(flex: 3),
+            if (rxCreatePostVM.loading)
+              Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(
+                    Theme.of(context).primaryColor,
+                  ),
+                ),
+              )
           ],
         );
       },

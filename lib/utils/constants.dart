@@ -6,14 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 const SplashScreenViewRoute = '/splash';
 const SignUpViewRoute = '/sign-up-page';
 const LoginViewRoute = '/login';
-const FeedViewRoute = '/feed';
 const SinglePostViewRoute = '/view-post';
-const UserMediaViewRoute = '/user-media';
 const ProfileUpdateViewRoute = '/update-profile';
-const AddPostViewRoute = '/add-post';
 const CommentsViewRoute = '/comment';
 const AuthBridgeViewRoute = '/auth-bridge';
 const HomeViewRoute = '/home';
-const SearchViewRoute = '/search';
+const GuestProfileViewRoute = '/guest-profile';
 
 final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);

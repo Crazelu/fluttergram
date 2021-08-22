@@ -8,7 +8,7 @@ abstract class StorageService {
   Future<void> delete([String key]);
 
   ///Fetches a string value stored with `key`
-  Future<String?> read(String key);
+  Future<String?> read([String key]);
 }
 
 class StorageServiceImpl implements StorageService {
@@ -20,7 +20,7 @@ class StorageServiceImpl implements StorageService {
 
   static const USER = 'userId';
   @override
-  Future<String?> read(String key) async {
+  Future<String?> read([String key = USER]) async {
     return await storage.read(key: key);
   }
 

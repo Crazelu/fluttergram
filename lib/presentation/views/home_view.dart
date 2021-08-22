@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttergram/presentation/shared/shared.dart';
+import 'package:fluttergram/presentation/view-models/view_models.dart';
 import 'package:fluttergram/presentation/views/feed_view.dart';
 import 'package:fluttergram/presentation/views/views.dart';
 
@@ -18,6 +19,17 @@ class _HomeViewState extends State<HomeView> {
     currentIndex = index;
     setState(() {});
     pageController.jumpToPage(index);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      await context.read<FeedVM>().setUpSnapshotStreamSubscription();
+      await context.read<HomeVM>().setUpSnapshotStreamSubscription();
+      context.read<SearchVM>().setUpSnapshotStreamSubscription();
+      await context.read<HomeVM>().getUserMedia();
+    });
   }
 
   @override
