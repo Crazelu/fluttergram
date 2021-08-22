@@ -7,3 +7,4 @@ export 'user_media_view.dart';
 export 'profile_update_view.dart';
 export 'add_post_view.dart';
 export 'comments_view.dart';
+export 'auth_bridge_view.dart';

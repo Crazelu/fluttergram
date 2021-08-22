@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttergram/presentation/shared/shared.dart';
 
@@ -14,9 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback(
       (_) {
+        // FirebaseAuth.instance.signOut();
         Future.delayed(const Duration(seconds: 2)).then(
           (_) => locator<NavigationHandler>()
-              .pushReplacementNamed(SignUpViewRoute),
+              .pushReplacementNamed(AuthBridgeViewRoute),
         );
       },
     );
