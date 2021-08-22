@@ -75,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
           controller: pageController,
           children: const [
             FeedView(),
-            SizedBox(),
+            SearchView(),
             AddPostView(),
             UserMediaView(),
           ],

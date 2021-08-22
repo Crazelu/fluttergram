@@ -29,6 +29,8 @@ class RouteGenerator {
         return _getPageRoute(AuthBridgeView(), settings);
       case HomeViewRoute:
         return _getPageRoute(HomeView(), settings);
+      case SearchViewRoute:
+        return _getPageRoute(SearchView(), settings);
 
       default:
         return _getPageRoute(_errorPage());

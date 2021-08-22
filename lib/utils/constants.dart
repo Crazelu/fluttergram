@@ -14,5 +14,6 @@ const AddPostViewRoute = '/add-post';
 const CommentsViewRoute = '/comment';
 const AuthBridgeViewRoute = '/auth-bridge';
 const HomeViewRoute = '/home';
+const SearchViewRoute = '/search';
 
 final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);
