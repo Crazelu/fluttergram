@@ -9,6 +9,7 @@ class LoginVM extends BaseViewModel {
   }) async {
     try {
       toggleLoading(true);
+
       User? user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -16,9 +17,11 @@ class LoginVM extends BaseViewModel {
           .user;
 
       if (user != null) {
-        // await storageService.write(user.uid, 'userId');
+        await storageService.store(value: user.uid);
       }
+
       toggleLoading(false);
+
       navigationHandler.pushNamed(FeedViewRoute);
     } on FirebaseAuthException catch (e) {
       AppLogger.logger.d(e);

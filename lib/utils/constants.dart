@@ -13,5 +13,6 @@ const ProfileUpdateViewRoute = '/update-profile';
 const AddPostViewRoute = '/add-post';
 const CommentsViewRoute = '/comment';
 const AuthBridgeViewRoute = '/auth-bridge';
+const HomeViewRoute = '/home';
 
 final kHorizontalPadding = EdgeInsets.symmetric(horizontal: 10.w);

@@ -8,12 +8,13 @@ class AuthBridgeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data != null) {
-            return FeedView();
-          }
-          return LoginView();
-        });
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data != null) {
+          return HomeView();
+        }
+        return LoginView();
+      },
+    );
   }
 }

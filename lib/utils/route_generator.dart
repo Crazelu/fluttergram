@@ -27,6 +27,8 @@ class RouteGenerator {
         return _getPageRoute(CommentsView(), settings);
       case AuthBridgeViewRoute:
         return _getPageRoute(AuthBridgeView(), settings);
+      case HomeViewRoute:
+        return _getPageRoute(HomeView(), settings);
 
       default:
         return _getPageRoute(_errorPage());

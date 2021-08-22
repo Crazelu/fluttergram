@@ -20,6 +20,8 @@ class SignUpVM extends BaseViewModel {
           .user;
 
       if (user != null) {
+        await storageService.store(value: user.uid);
+
         final ref = FirebaseFirestore.instance
             .collection('users')
             .withConverter<UserModel>(
